@@ -54,37 +54,83 @@ def watch_movie(user_data, title):
 # --------------------------------------
 # ------------- WAVE 2 --------------------
 # -----------------------------------------
+#Jeslyn's:
+# def get_watched_avg_rating(user_data):
+#     total_score = 0
+#     movie_count = 0
+#     if not user_data["watched"]:
+#         return 0.0
+#     for movie in user_data["watched"]:
+#         total_score += movie["rating"]
+#         movie_count += 1
+    
+#     return float(total_score/movie_count)
+
+#Jeslyn's
+# def get_most_watched_genre(user_data):
+#     if not user_data["watched"]:
+#         return None
+#     #Set the most watched genre as the genre of first movie in the watched list
+#     genre_frequency = {}
+#     for movie in user_data["watched"]:
+#         if movie["genre"] not in genre_frequency:
+#             genre_frequency[movie["genre"]] = 1
+#         else:
+#             genre_frequency[movie["genre"]] += 1
+    
+#     highest_frequency = 0
+#     most_watch_genre = ""
+#     for genre, count in genre_frequency.items():
+#         if count > highest_frequency:
+#             highest_frequency = count
+#             most_watch_genre = genre
+    
+#     return most_watch_genre 
+
+#Jenny's:
 def get_watched_avg_rating(user_data):
-    total_score = 0
-    movie_count = 0
-    if not user_data["watched"]:
+    total_rating = 0
+    if len(user_data["watched"]) == 0:
         return 0.0
     for movie in user_data["watched"]:
-        total_score += movie["rating"]
-        movie_count += 1
-    
-    return float(total_score/movie_count)
+        # print (movie["rating"])
+        total_rating += movie["rating"]   
+        # print(total_rating)
+    avg_rating = total_rating / len(user_data["watched"])
+    return avg_rating
 
+#Jenny's    
 def get_most_watched_genre(user_data):
-    if not user_data["watched"]:
+    if len(user_data["watched"]) == 0:
         return None
-    #Set the most watched genre as the genre of first movie in the watched list
-    genre_frequency = {}
+    genre_frequence = {}
     for movie in user_data["watched"]:
-        if movie["genre"] not in genre_frequency:
-            genre_frequency[movie["genre"]] = 1
+        if movie["genre"] in genre_frequence:
+            genre_frequence[movie["genre"]] +=1
+            # print(genre_frequence)
         else:
-            genre_frequency[movie["genre"]] += 1
-    
-    highest_frequency = 0
-    most_watch_genre = ""
-    for genre, count in genre_frequency.items():
-        if count > highest_frequency:
-            highest_frequency = count
-            most_watch_genre = genre
-    
-    return most_watch_genre 
+            genre_frequence[movie["genre"]] = 1
+    max_frequence = max(genre_frequence, key = genre_frequence.get)
+    # print(genre_frequence)
 
+    return max_frequence
+
+
+
+user_data = {
+        "watchlist": [{
+            "title": "MOVIE_TITLE_1",
+            "genre": "GENRE_1",
+            "rating": 5
+        }],
+        'watched': [{'title': 'Recursion', 'genre': 'Intrigue', 'rating': 2.0},
+                    {'title': 'The Lord of the Functions: The Two Parameters', 'genre': 'Fantasy', 'rating': 4.0}, 
+                    {'title': 'The JavaScript and the React', 'genre': 'Action', 'rating': 2.2}, 
+                    {'title': 'The Lord of the Functions: The Fellowship of the Function', 'genre': 'Fantasy', 'rating': 4.8}, 
+                    {'title': 'The Lord of the Functions: The Return of the Value', 'genre': 'Fantasy', 'rating': 4.0}, 
+                    {'title': 'Instructor Student TA Manager', 'genre': 'Intrigue', 'rating': 4.5}]}
+
+#print(get_most_watched_genre(user_data))
 # -----------------------------------------
 # ------------- WAVE 3 --------------------
 # -----------------------------------------
