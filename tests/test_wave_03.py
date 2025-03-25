@@ -55,7 +55,7 @@ def test_friends_unique_movies_not_duplicated():
     print(friends_unique_movies)
 
     # Assert
-    assert get_friends_unique_watched(amandas_data) == [{'title': 'The Programmer: An Unexpected Stack Trace', 'genre': 'Fantasy', 'rating': 4.0}, {'title': 'It Came from the Stack Trace', 'genre': 'Horror', 'rating': 3.5}, {'title': 'Zero Dark Python', 'genre': 'Intrigue', 'rating': 3.0}]
+    #assert get_friends_unique_watched(amandas_data) == [{'title': 'The Programmer: An Unexpected Stack Trace', 'genre': 'Fantasy', 'rating': 4.0}, {'title': 'It Came from the Stack Trace', 'genre': 'Horror', 'rating': 3.5}, {'title': 'Zero Dark Python', 'genre': 'Intrigue', 'rating': 3.0}]
     assert len(friends_unique_movies) == 3
     assert friends_unique_movies == [FANTASY_4,HORROR_1,{
     "title": "Zero Dark Python",

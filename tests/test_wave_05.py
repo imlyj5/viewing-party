@@ -53,13 +53,12 @@ def test_new_genre_rec_from_empty_friends():
             }
         ]
     }
-    print(sonyas_data)
     # Act
     recommendations = get_new_rec_by_genre(sonyas_data)
     
     # Assert
     assert len(recommendations) == 0
-    assert get_new_rec_by_genre(sonyas_data) == []
+    assert recommendations == []
 
 # @pytest.mark.skip()
 def test_unique_rec_from_favorites():
