@@ -1,4 +1,6 @@
+# --------------------------------------
 # ------------- WAVE 1 --------------------
+# -----------------------------------------
 def create_movie(title, genre, rating):
     movie = {}
     if title == None or genre == None or rating == None:
@@ -32,7 +34,7 @@ def watch_movie(user_data, title):
 # -----------------------------------------
 def get_watched_avg_rating(user_data):
     total_rating = 0
-    if len(user_data["watched"]) == 0:
+    if not user_data["watched"]:
         return 0.0
     
     for movie in user_data["watched"]:
@@ -43,7 +45,7 @@ def get_watched_avg_rating(user_data):
 
 
 def get_most_watched_genre(user_data):
-    if len(user_data["watched"]) == 0:
+    if not user_data["watched"]:
         return None
     
     genre_frequence = {}
