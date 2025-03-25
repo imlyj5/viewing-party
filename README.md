@@ -341,6 +341,7 @@ Note: For Waves 2, 3, 4, and 5, your implementation of each of the functions sho
 
 1. Create a function named `get_available_recs`. This function should...
 
+
 - take one parameter: `user_data`
   - `user_data` will have a field `"subscriptions"`. The value of `"subscriptions"` is a list of strings
     - This represents the names of streaming services that the user has access to
