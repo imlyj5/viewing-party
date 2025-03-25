@@ -67,7 +67,7 @@ def get_unique_watched(user_data):
     friends_movie = set()
     for friend in user_data["friends"]:
         for movie in friend["watched"]:
-            friends_movie.add(movie["title"])  
+            friends_movie.add(movie["title"])  #add friend's movie titles to set to remove duplicate
     
     for movie in user_data["watched"]:
         if movie["title"] not in friends_movie:
@@ -78,17 +78,18 @@ def get_unique_watched(user_data):
 def get_friends_unique_watched(user_data):
     user_movie_titles = []
     for movie in user_data["watched"]:
-        user_movie_titles.append(movie["title"])
+        user_movie_titles.append(movie["title"])  #add user's movie titles to list
 
-    friends_movie_titles = set()
+    friends_movie_titles = set()  #use set to store friend's movie titles to remove duplicate movie titles
     unique_movies = []
 
     for friend in user_data["friends"]:
         for movie in friend["watched"]:
             title = movie["title"]
-            if title not in user_movie_titles and title not in friends_movie_titles:
-                friends_movie_titles.add(title)
-                unique_movies.append(movie)
+            #if the title not in user_movie_titles and not exist in friends_movie_titles
+            if title not in user_movie_titles and title not in friends_movie_titles: 
+                friends_movie_titles.add(title)  #add this title to friends_movie_titles
+                unique_movies.append(movie)  #confirm this movie is friends_unique_watched
 
     return unique_movies
 
