@@ -13,10 +13,10 @@ def create_movie(title, genre, rating):
     return movie
 
 def add_to_watched(user_data, movie):
-    print(f"user data: {user_data}")
-    print(movie)
+    #print(f"user data: {user_data}")
+    #print(movie)
     user_data["watched"].append(movie)
-    print(f"watched: {user_data["watched"]}")
+    #print(f"watched: {user_data["watched"]}")
     return user_data
 
 def add_to_watchlist(user_data, movie):
@@ -26,13 +26,13 @@ def add_to_watchlist(user_data, movie):
 def watch_movie(user_data, title):
     #print(user_data["watchlist"][0]["title"])
     for movie in user_data["watchlist"]:
-        print(f"movie title: {movie["title"]}") 
-        print(f"title: {title}") 
+        #print(f"movie title: {movie["title"]}") 
+        #print(f"title: {title}") 
         if title == movie["title"]:
             add_to_watched(user_data, movie)
             user_data["watchlist"].remove(movie)
-    print(f"updated watchlist: {user_data["watchlist"]}") 
-    print(f"updated watched: {user_data["watched"]}") 
+    #print(f"updated watchlist: {user_data["watchlist"]}") 
+    #print(f"updated watched: {user_data["watched"]}") 
     return user_data
 
 # janes_data = {
@@ -161,8 +161,8 @@ def get_unique_watched(user_data):
     #key is movie title, value is list of frequescy (set to 0) at index 0 and movie details at index 1
     cross_check = {}
     for user_movie in user_data["watched"]:
-        cross_check[user_movie["title"]] = [0]
-        cross_check[user_movie["title"]].append(user_movie)
+        cross_check[user_movie["title"]] = [0]  #works as frequency counter
+        cross_check[user_movie["title"]].append(user_movie)  #stores each movie's deatils
     #print(f"cross check: {cross_check}")
 
     for friend in user_data["friends"]:
