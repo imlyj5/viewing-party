@@ -105,7 +105,6 @@ def get_available_recs(user_data):
 # -----------------------------------------
 # ------------- WAVE 5 --------------------
 # -----------------------------------------
-#Jeslyn's
 def get_new_rec_by_genre(user_data):
     rec_list = []
     for movie in get_friends_unique_watched(user_data):
@@ -113,19 +112,7 @@ def get_new_rec_by_genre(user_data):
             rec_list.append(movie)
     return rec_list
 
-# def get_new_rec_by_genre(user_data):
-#     recs_movie = []
-#     friends_movie = get_friends_unique_watched(user_data)
-#     prefer_genre = get_most_watched_genre(user_data)
-#     if not prefer_genre:
-#         return []
-#     for movie in friends_movie:
-#         if movie["genre"] in prefer_genre:
-#             recs_movie.append(movie)
-#     return recs_movie
 
-
-#Jeslyn's
 def get_rec_from_favorites(user_data):
     rec_list = []
     for movie in get_unique_watched(user_data):
@@ -133,16 +120,5 @@ def get_rec_from_favorites(user_data):
             rec_list.append(movie)
     return rec_list
 
-# def get_rec_from_favorites(user_data):
-#     recs_movie = []
-#     user_movies = get_unique_watched(user_data)
-#     fav_movie = user_data["favorites"]
-#     fav_list = []
-#     for movie in fav_movie:
-#         fav_list.append(movie["title"])
-#     for movie in user_movies:
-#         if movie["title"] in fav_list:
-#             recs_movie.append(movie)
-#     return recs_movie
 
 
