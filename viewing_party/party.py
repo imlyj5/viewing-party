@@ -54,7 +54,40 @@ def watch_movie(user_data, title):
 # --------------------------------------
 # ------------- WAVE 2 --------------------
 # -----------------------------------------
+#Jeslyn's:
+# def get_watched_avg_rating(user_data):
+#     total_score = 0
+#     movie_count = 0
+#     if not user_data["watched"]:
+#         return 0.0
+#     for movie in user_data["watched"]:
+#         total_score += movie["rating"]
+#         movie_count += 1
+    
+#     return float(total_score/movie_count)
 
+#Jeslyn's
+# def get_most_watched_genre(user_data):
+#     if not user_data["watched"]:
+#         return None
+#     #Set the most watched genre as the genre of first movie in the watched list
+#     genre_frequency = {}
+#     for movie in user_data["watched"]:
+#         if movie["genre"] not in genre_frequency:
+#             genre_frequency[movie["genre"]] = 1
+#         else:
+#             genre_frequency[movie["genre"]] += 1
+    
+#     highest_frequency = 0
+#     most_watch_genre = ""
+#     for genre, count in genre_frequency.items():
+#         if count > highest_frequency:
+#             highest_frequency = count
+#             most_watch_genre = genre
+    
+#     return most_watch_genre 
+
+#Jenny's:
 def get_watched_avg_rating(user_data):
     total_rating = 0
     if len(user_data["watched"]) == 0:
@@ -65,7 +98,8 @@ def get_watched_avg_rating(user_data):
         # print(total_rating)
     avg_rating = total_rating / len(user_data["watched"])
     return avg_rating
-    
+
+#Jenny's    
 def get_most_watched_genre(user_data):
     if len(user_data["watched"]) == 0:
         return None
@@ -140,16 +174,85 @@ def get_friends_unique_watched(user_data):
 # print(get_friends_unique_watched(user_data))
 
         
+# data_with_friends = {
+#         "watched": [{
+#             "title": "MOVIE_TITLE_2",
+#             "genre": "GENRE_1",
+#             "rating": 3
+#         },{
+#             "title": "MOVIE_TITLE_1",
+#             "genre": "GENRE_1",
+#             "rating": 5
+#         }],
+#         "friends": [{"watched":[{
+#             "title": "MOVIE_TITLE_2",
+#             "genre": "GENRE_1",
+#             "rating": 3
+#         }]},{"watched":[{
+#             "title": "MOVIE_TITLE_3",
+#             "genre": "GENRE_1",
+#             "rating": 3
+#         }]}]
+#     }
+
+# def get_unique_watched(user_data):
+#     #create cross check dictionary based on the movies watched by user
+#     #key is movie title, value is list of frequescy (set to 0) at index 0 and movie details at index 1
+#     cross_check = {}
+#     for user_movie in user_data["watched"]:
+#         cross_check[user_movie["title"]] = [0]
+#         cross_check[user_movie["title"]].append(user_movie)
+#     #print(f"cross check: {cross_check}")
+
+#     for friend in user_data["friends"]:
+#         for friend_movie in friend["watched"]:
+#             if friend_movie["title"] in cross_check:
+#                 cross_check[friend_movie["title"]][0] += 1
+
+#     #print(f"cross check: {cross_check}")
+    
+#     unique = []
+#     for movie, count in cross_check.items():
+#         if count[0] == 0:
+#             unique.append(count[1])
+#     #print(f"unique: {unique}")
+
+#     return unique
+
+#get_unique_watched(data_with_friends)   
+
+# def get_friends_unique_watched(user_data):
+#     cross_check = {}
+#     for friend in user_data["friends"]:
+#         for friend_movie in friend["watched"]:
+#             if friend_movie["title"] in cross_check:
+#                 continue
+#             else:
+#                 cross_check[friend_movie["title"]] = [0]
+#                 cross_check[friend_movie["title"]].append(friend_movie)
+#         #print(f"cross check: {cross_check}") 
+
+#     for user_movie in user_data["watched"]:
+#         if user_movie["title"] in cross_check:
+#             cross_check[user_movie["title"]][0] += 1
+
+#     unique = []
+#     for movie, count in cross_check.items():
+#         if count[0] == 0:
+#             unique.append(count[1])
+#     #print(f"unique: {unique}")
+    
+#     return unique
+#get_friends_unique_watched(data_with_friends)   
 # -----------------------------------------
 # ------------- WAVE 4 --------------------
 # -----------------------------------------
 def get_available_recs(user_data):
-    recs_movie = []
-    friend_movie = get_friends_unique_watched(user_data)
-    for movie in friend_movie:
+    rec_list = []
+    for movie in get_friends_unique_watched(user_data):
         if movie["host"] in user_data["subscriptions"]:
-            recs_movie.append(movie)
-    return recs_movie
+            rec_list.append(movie)
+    return rec_list
 
 # -----------------------------------------
 # ------------- WAVE 5 --------------------
@@ -183,3 +286,15 @@ def get_rec_from_favorites(user_data):
 
 # user_data = {'watched': [{'title': 'Recursion', 'genre': 'Intrigue', 'rating': 2.0, 'host': 'hulu'}], 'friends': [{'watched': []}, {'watched': []}]}
 # print(get_new_rec_by_genre(user_data))
+#     rec_list = []
+#     for movie in get_friends_unique_watched(user_data):
+#         if movie["genre"] == get_most_watched_genre(user_data):
+#             rec_list.append(movie)
+#     return rec_list
+
+# def get_rec_from_favorites(user_data):
+#     rec_list = []
+#     for movie in get_unique_watched(user_data):
+#         if movie in user_data["favorites"]:
+#             rec_list.append(movie)
+#     return rec_list

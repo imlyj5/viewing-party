@@ -57,10 +57,11 @@ def test_friends_unique_movies_not_duplicated():
     # Assert
     assert get_friends_unique_watched(amandas_data) == [{'title': 'The Programmer: An Unexpected Stack Trace', 'genre': 'Fantasy', 'rating': 4.0}, {'title': 'It Came from the Stack Trace', 'genre': 'Horror', 'rating': 3.5}, {'title': 'Zero Dark Python', 'genre': 'Intrigue', 'rating': 3.0}]
     assert len(friends_unique_movies) == 3
-
-    # *************************************************************************************************
-    # ****** Add assertions here to test that the correct movies are in friends_unique_movies **********
-    # **************************************************************************************************
+    assert friends_unique_movies == [FANTASY_4,HORROR_1,{
+    "title": "Zero Dark Python",
+    "genre": "Intrigue",
+    "rating": 3.0
+}]
 
 # @pytest.mark.skip()
 def test_friends_not_unique_movies():
